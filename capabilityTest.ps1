@@ -113,7 +113,7 @@ Function Get-Gateway-Historical-Stats($interval){
                 # to       = "1606301580"
                 dataid   = $_
             }
-            Start-Sleep -s $interval
+            # Start-Sleep -s $interval
             $historicalStats = ((Invoke-WebRequest -Method Get -Uri "$AMMhost/api/v1/systems/data/raw"  -Headers $Header -Body  $Parameters).Content)
             if ($historicalStats -ne $null){
                 # Write-Host -ForegroundColor Yellow "Historical Stats :"
