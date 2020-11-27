@@ -12,21 +12,26 @@ $script:clientsDict = @{'client1' = [Convert]::ToBase64String([Text.Encoding]::U
 $script:clientToken = @{'client1' = "";
                         'client2' = ""}
 
+$script:clientUser = @{'client1' = @("CapabilityTest-1", "mobilitymanager");
+'client2' = @("CapabilityTest-2", "mobilitymanager")}
+
 
 $script:statKeys = @("ReportIdleTime", "CPU-Temperature", "Location-longitude")
 $script:statkeysAsOne = "ReportIdleTime,CPU-Temperature,GPS Location-longitude"
 Function Connect-To-AMM(){
 
-    $Parameters = @{
-        grant_type = "password"
-        username = $script:AMMuserName
-        password = $script:AMMpassword
-    }
+    
 
     $script:clientsDict.Keys | ForEach-Object {
         $Header = @{
             Authorization = "Basic " + $script:clientsDict.Item($_)
             'Content-Type' = 'application/x-www-form-urlencoded'
+        }
+
+        $Parameters = @{
+            grant_type = "password"
+            username = $script:clientUser.Item($_)[0]
+            password = $script:clientUser.Item($_)[1]
         }
         [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
         $credentials = ((Invoke-WebRequest -Method Post -Uri "$AMMhost/api/oauth/token"  -Headers $Header -Body $Parameters).Content | ConvertFrom-Json)
