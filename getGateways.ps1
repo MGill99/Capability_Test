@@ -1,29 +1,35 @@
-
-# AMM API parameters
-$AMMhost = "https://eng.inmotionnetworks.ca"
-
 Function Get-Gateways($clientToken) {
-    $clientToken.keys | ForEach-Object {
 
-        # set Header for GET requestS 
-       $Header =  @{
-           'Authorization' = "Bearer " + $clientToken.Item($_)
-       }
-       $Parameters = @{
-        ids= $ids
+    workflow makecalls{
+        param(
+            [Parameter (Mandatory = $true)]
+            [String]$token
+        )
+        
+
+        # ForEach -Parallel ($token in $tokens.values)
+        # {
+        #     Parallel {
+                InlineScript {
+                    $Header =  @{
+                        'Authorization' = "Bearer " + $using:token
+                    }
+                    [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+                    (Invoke-WebRequest -Method Get -Uri "https://eng.inmotionnetworks.ca/api/v1/systems" -Headers  $Header -Body  $Parameters) 
+                    # Start-Job -Name webReq -ScriptBlock {
+                    # Wait-Job -Name webReq
+                }
+        #     }
+        # }
+    
+
     }
-    [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
-       $gateways = ((Invoke-WebRequest -Method Get -Uri "$AMMhost/api/v1/systems"  -Headers $Header -Body  $Parameters).Content)
-       if ($gateways -ne $null){
-           return $gateways
-       }
 
-      
-   }
+    makecalls $clientToken
 }
 
 Function runCalls($clientToken){
-    while($true){
+        
         Get-Gateways($clientToken)
-    }
+        
 }
