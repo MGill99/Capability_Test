@@ -14,10 +14,10 @@
                     Connect-To-AMM
                 }
                 $scrips= @( 
-                "\getGroups.ps1",
-                 "\getGateways.ps1",
-                 "\getLatestStats.ps1",
-                "\getHistoricalStats.ps1"
+                "/var/capabilityTest/Capability_test/getGroups.ps1",
+                 "/var/capabilityTest/Capability_test/getGateways.ps1",
+                 "/var/capabilityTest/Capability_test/getLatestStats.ps1",
+                "/var/capabilityTest/Capability_test/getHistoricalStats.ps1"
                 )
 
                ForEach -Parallel ($clientToken in $clientsAndTokens.values){
