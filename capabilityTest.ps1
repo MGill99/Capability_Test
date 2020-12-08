@@ -24,10 +24,10 @@
                                   
                                     write-host "out "  $clientToken
                                     $scrips = @(
-                                            ,@("C:\Users\Mgill\Desktop\capabilityTest\getGroups.ps1" ,  $clientToken) 
-                                            ,@("C:\Users\Mgill\Desktop\capabilityTest\getGateways.ps1" , $clientToken) 
-                                            ,@("C:\Users\Mgill\Desktop\capabilityTest\getLatestStats.ps1", $clientToken)
-                                            ,@("C:\Users\Mgill\Desktop\capabilityTest\getHistoricalStats.ps1", $clientToken)
+                                            ,@("/var/capabilityTest/Capability_test/getGroups.ps1" ,  $clientToken) 
+                                            ,@("/var/capabilityTest/Capability_test/getGateways.ps1" , $clientToken) 
+                                            ,@("/var/capabilityTest/Capability_test/getLatestStats.ps1", $clientToken)
+                                            ,@("/var/capabilityTest/Capability_test/getHistoricalStats.ps1", $clientToken)
                                     )
                                     $scrips |  ForEach-Object -Parallel {
                                                 write-host "scrip "  $_[0] $_[1]
