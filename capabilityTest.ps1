@@ -5,75 +5,57 @@
     # $interval = Get-Random -Minimum 1 -Maximum 10
 
     write-host -ForegroundColor Yellow $interval 
-    workflow Test-Workflow{
-        $clientsAndTokens = ""
-            workflow Make-API-calls{
-                $clientsAndTokens = InlineScript{ 
-                
-                    ."C:\Users\Mgill\Desktop\capabilityTest\connectClients.ps1"
-                    Connect-To-AMM
-                }
-                $scrips= @( 
-                "/var/capabilityTest/Capability_test/getGroups.ps1",
-                 "/var/capabilityTest/Capability_test/getGateways.ps1",
-                 "/var/capabilityTest/Capability_test/getLatestStats.ps1",
-                "/var/capabilityTest/Capability_test/getHistoricalStats.ps1"
-                )
-
-               ForEach -Parallel ($clientToken in $clientsAndTokens.values){
-                    parallel {
-                        # $interval = Get-Random -Minimum 1 -Maximum 10
-                        Start-Sleep -s 40
-                        while($true){
+        Function startCalls() {
+            $clientsAndTokens = ""
+            ."C:\Users\Mgill\Desktop\capabilityTest\connectClients.ps1"
+            $clientsAndTokens =  Connect-To-AMM
+           
+                $clientsAndTokens.values | ForEach-Object {
+                    
+                            $Scriptblock = {
+                                Param (
+                                    [string]$clientToken
+                                 )
+                                while($true){
                                     $start = Get-Date
                                     $s = $start.ToString("yyyy-MM-dd HH:mm:ss")
-                                    InlineScript {
-                                        write-host ($using:clientToken)
-                                        write-host "Latest Stats start $using:s" }
-                                
-                                    ForEach -Parallel ($scrip in $scrips)
-                                    {
-                                        parallel {
-                                            InlineScript{ 
-                                                .$using:scrip
-                                                runCalls($Using:clientToken)
-                
-                                            
-                                            } 
-                                        }
+        
+                                    write-host "Latest Stats start $s" 
+                                  
+                                    write-host "out "  $clientToken
+                                    $scrips = @(
+                                            ,@("C:\Users\Mgill\Desktop\capabilityTest\getGroups.ps1" ,  $clientToken) 
+                                            ,@("C:\Users\Mgill\Desktop\capabilityTest\getGateways.ps1" , $clientToken) 
+                                            ,@("C:\Users\Mgill\Desktop\capabilityTest\getLatestStats.ps1", $clientToken)
+                                            ,@("C:\Users\Mgill\Desktop\capabilityTest\getHistoricalStats.ps1", $clientToken)
+                                    )
+                                    $scrips |  ForEach-Object -Parallel {
+                                                write-host "scrip "  $_[0] $_[1]
+                                                .$_[0]
+                                                runCalls($_[1])
                                     } 
-                                    InlineScript{
-                                        $end = Get-Date 
-                                        $e = $end.ToString("yyyy-MM-dd HH:mm:ss")
-                                        write-host "Latest Stats end $e" 
-                
-                
-                                        $diff=  ($end - $using:start).seconds
-                                        $diff = 40 - $diff
-                                            Write-Output "Wait time after -40 is: $diff"
-                                        $last = (Get-Date).AddSeconds($diff)
-                                        write-host "last end "  $last.ToString("[yy.MM.dd HH:mm:ss]")
-                                        while((get-date) -lt $last){
-                                        }
-                                           
-                                    }
-                                    
-                                    
-                                    
+                                    $end = Get-Date 
+                                    $e = $end.ToString("yyyy-MM-dd HH:mm:ss")
+                                    write-host "Latest Stats end $e" 
+            
+            
+                                    $diff=  ($end - $start).seconds
+                                    $diff = 40 - $diff
+                                    Write-Output "Wait time after -40 is: $diff"
+                                    $last = (Get-Date).AddSeconds($diff)
+                                    write-host "last end "  $last.ToString("[yy.MM.dd HH:mm:ss]")
+                                    start-sleep -seconds $diff
+                                    # while((get-date) -lt $last){
+                                    # }
+                             }
                             }
-                    }
-               }
-           
-                
-              }
-              Make-API-calls 
-                
-        }
+                             Start-Job -ScriptBlock $Scriptblock -ArgumentList $_
+                             start-sleep -seconds 60
 
-       
+                                    
+                            } 
+               } 
 
 
-    Test-Workflow
+        startCalls
 
-
-    ead-Host -Prompt "Press Enter to exit"
