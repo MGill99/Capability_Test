@@ -7,7 +7,7 @@
     write-host -ForegroundColor Yellow $interval 
         Function startCalls() {
             $clientsAndTokens = ""
-            ."C:\Users\Mgill\Desktop\capabilityTest\connectClients.ps1"
+            ."/var/capabilityTest/Capability_test/connectClients.ps1"
             $clientsAndTokens =  Connect-To-AMM
            
                 $clientsAndTokens.values | ForEach-Object {
