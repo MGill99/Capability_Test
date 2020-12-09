@@ -1,7 +1,7 @@
 
         Function startCalls() {
         $clientsAndTokens = ""
-        ."C:\Users\Mgill\Desktop\capabilityTest\connectClients.ps1"
+        ."/var/capabilityTest/Capability_Test/connectClients.ps1"
         $clientsAndTokens =  Connect-To-AMM $script:AMM_Target $script:Num_of_clients
         $clientsAndTokens | ForEach-Object {
 
