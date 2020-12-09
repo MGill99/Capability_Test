@@ -49,16 +49,16 @@ $script:clientUser = @{'client1' = @("CapabilityTest-1", "mobilitymanager");
                         'client8' = @("CapabilityTest-8", "mobilitymanager");
                         'client9' = @("CapabilityTest-9", "mobilitymanager");
                         'client10' = @("CapabilityTest-10", "mobilitymanager");
-                        'client11' = @("CapabilityTest-1", "mobilitymanager");
-                        'client12' = @("CapabilityTest-2", "mobilitymanager");
-                        'client13' = @("CapabilityTest-3", "mobilitymanager");
-                        'client14' = @("CapabilityTest-4", "mobilitymanager");
-                        'client15' = @("CapabilityTest-5", "mobilitymanager");
-                        'client16' = @("CapabilityTest-6", "mobilitymanager");
-                        'client17' = @("CapabilityTest-7", "mobilitymanager");
-                        'client18' = @("CapabilityTest-8", "mobilitymanager");
-                        'client19' = @("CapabilityTest-9", "mobilitymanager");
-                        'client20' = @("CapabilityTest-10", "mobilitymanager")
+                        'client11' = @("CapabilityTest-11", "mobilitymanager");
+                        'client12' = @("CapabilityTest-12", "mobilitymanager");
+                        'client13' = @("CapabilityTest-13", "mobilitymanager");
+                        'client14' = @("CapabilityTest-14", "mobilitymanager");
+                        'client15' = @("CapabilityTest-15", "mobilitymanager");
+                        'client16' = @("CapabilityTest-16", "mobilitymanager");
+                        'client17' = @("CapabilityTest-17", "mobilitymanager");
+                        'client18' = @("CapabilityTest-18", "mobilitymanager");
+                        'client19' = @("CapabilityTest-19", "mobilitymanager");
+                        'client20' = @("CapabilityTest-20", "mobilitymanager")
                     }
 
 
