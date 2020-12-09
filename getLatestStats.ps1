@@ -1,4 +1,4 @@
-Function GetGatewayLatestStats($clientToken){
+Function GetGatewayLatestStats($clientToken, $AMM_target){
 
         $statkeysAsOne = "ReportIdleTime,CPU-Temperature,GPS Location-longitude"
 
@@ -9,15 +9,21 @@ Function GetGatewayLatestStats($clientToken){
         $Parameters = @{
             ids= $statkeysAsOne
         }
-        [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
-        $url = "https://eng.inmotionnetworks.ca/api/v1/systems/ND62820053011029/data?ids=$statkeysAsOne"
-        (Invoke-WebRequest -Method Get -Uri $url -Headers  $Header -Body  $Parameters) 
+        # [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+        [Net.ServicePointManager]::ServerCertificateValidationCallback = {$true}
+        $url = "$AMM_target/api/v1/systems/H060512A0189/data?ids=$statkeysAsOne"
+        Invoke-WebRequest -SkipCertificateCheck  -Method Get -Uri $url -Headers  $Header -Body  $Parameters
                         
     
 }
 
-Function runCalls($clientToken){
+Function runCalls($clientToken, $AMM_target){
         
-        GetGatewayLatestStats($clientToken)
+        GetGatewayLatestStats $clientToken $AMM_target
         
 }
+
+
+# H060512A0189   10.1.65.95
+
+# ND62820053011029  eng server

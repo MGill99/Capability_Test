@@ -1,5 +1,5 @@
 
-Function GetGatewayHistoricalStats($clientToken){
+Function GetGatewayHistoricalStats($clientToken, $AMM_target){
 
         $statKeys =  @("ReportIdleTime")
         $Header =  @{
@@ -8,16 +8,17 @@ Function GetGatewayHistoricalStats($clientToken){
 
         $statKeys | ForEach-Object{
             $Parameters = @{
-                targetid = "ND62820053011029"
+                targetid = "H060512A0189"
                 dataid   = $_
             }
-            [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
-            (Invoke-WebRequest -Method Get -Uri "https://eng.inmotionnetworks.ca/api/v1/systems/data/raw" -Headers  $Header -Body  $Parameters) 
+            # [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+            [Net.ServicePointManager]::ServerCertificateValidationCallback = {$true}
+            (Invoke-WebRequest -SkipCertificateCheck  -Method Get -Uri "$AMM_target/api/v1/systems/data/raw" -Headers  $Header -Body  $Parameters) 
             
         }
     }
 
 
-Function runCalls($clientToken){
-        GetGatewayHistoricalStats($clientToken)
+Function runCalls($clientToken, $AMM_target){
+        GetGatewayHistoricalStats $clientToken $AMM_target
 }

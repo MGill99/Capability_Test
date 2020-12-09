@@ -2,21 +2,41 @@
 $AMMhost = "https://eng.inmotionnetworks.ca"
 
 # user credentials
-$script:AMMuserName = 'mgill'
+$script:AMMuserName = 'admin'
 $script:AMMpassword = 'mobilitymanager'  
 
 
 # Client's encoded credentials Dictionary
-$script:clientsDict = @{'client1' = [Convert]::ToBase64String([Text.Encoding]::UTF8.GetBytes("a81b30bce74c4c7e84c095e7dbaa74a6"+":"+"a36e8fc7bf274680813e7fbcf2aedb23"));
-                        'client2' = [Convert]::ToBase64String([Text.Encoding]::UTF8.GetBytes("dc787751c08a43788c14f7e3201aa7b5"+":"+"dfba8d43534d479486c9cc72e9983e6f"));
-                        'client3' = [Convert]::ToBase64String([Text.Encoding]::UTF8.GetBytes("9ea45db384b04e2aaaf3149b3e71560a"+":"+"16e730a370f448fba16fa47b1979ad6c"));
-                        'client4' = [Convert]::ToBase64String([Text.Encoding]::UTF8.GetBytes("69c09e5ebc474eca9f255195e85449fa"+":"+"feba00ad21e04462828917cf8cf00c73"));
-                        'client5' = [Convert]::ToBase64String([Text.Encoding]::UTF8.GetBytes("007eb1cd225f4d1eaae6a076c05d2871"+":"+"a0c8251346bb413bbc899e2759ef7571"));
-                        'client6' = [Convert]::ToBase64String([Text.Encoding]::UTF8.GetBytes("d3f6c2f61e7d489fbb00bc395aab8f0a"+":"+"37c8bb889cd54537ad5a9f0cc38b7e32"));
-                        'client7' = [Convert]::ToBase64String([Text.Encoding]::UTF8.GetBytes("04869346b04d4719b820c9b1ba71f9ce"+":"+"e50d8903d7934fe8bfac6457b3248173"));
-                        'client8' = [Convert]::ToBase64String([Text.Encoding]::UTF8.GetBytes("9af0a54634aa4a739ce8101978681b2d"+":"+"5224efdec91743e8b0ce46c07be31844"));
-                        'client9' = [Convert]::ToBase64String([Text.Encoding]::UTF8.GetBytes("f032bd57338944448a5204a5f6c2acc6"+":"+"72e3fce26ccf4c21bc56d17e6a1e71a8"));
-                        'client10' = [Convert]::ToBase64String([Text.Encoding]::UTF8.GetBytes("0812cc5d0751431880528513ec79b760"+":"+"d1a61d78ab8145768b5135b7652bf865"))
+$script:clientsDict = @{'client1' = [Convert]::ToBase64String([Text.Encoding]::UTF8.GetBytes("07b9c7dadb4a404bafbaf94b726d349e"+":"+"e1025059c2d64821b9aef67af20f36af"));
+                        'client2' = [Convert]::ToBase64String([Text.Encoding]::UTF8.GetBytes("9c3ff6f4cf23415587c56c8160243640"+":"+"e01002a203084758add6ab80067ee12b"));
+                        'client3' = [Convert]::ToBase64String([Text.Encoding]::UTF8.GetBytes("7953de1c6de7467089bdd21633e910d6"+":"+"4a432c44f6fb41459abe96eaf18d6e7d"));
+                        'client4' = [Convert]::ToBase64String([Text.Encoding]::UTF8.GetBytes("38736e8fe71a424e9805b30f5a8f21d8"+":"+"5cfea228e20541d382b109dcd0384097"));
+                        'client5' = [Convert]::ToBase64String([Text.Encoding]::UTF8.GetBytes("b034b72cea6b4ba28eac270a7dfb9517"+":"+"4cac29a449c44a1da84677154710361c"));
+                        'client6' = [Convert]::ToBase64String([Text.Encoding]::UTF8.GetBytes("b690a16530b742578b2cfd56a158cbf8"+":"+"d65c49e2654a4d7b8414b1b1f802c04f"));
+                        'client7' = [Convert]::ToBase64String([Text.Encoding]::UTF8.GetBytes("c045ae09bc9c4b8abe5272ee2804fdc5"+":"+"78c06f0476db4d0e898dd78c06c8cc73"));
+                        'client8' = [Convert]::ToBase64String([Text.Encoding]::UTF8.GetBytes("938ba5f0c0fd4180898661775fc5ff72"+":"+"a00ed7a12cfe469e921220556eae136c"));
+                        'client9' = [Convert]::ToBase64String([Text.Encoding]::UTF8.GetBytes("f5f01703b39a4e9ba157f6a72aecb35b"+":"+"f3ec10175d794ae9b4102f09f7191ab6"));
+                        'client10' = [Convert]::ToBase64String([Text.Encoding]::UTF8.GetBytes("1e99252c8e114c39a8eb1559595ab9d8"+":"+"00a6167fc0464344ae7524a167bf8d66"));
+
+                        'client11' = [Convert]::ToBase64String([Text.Encoding]::UTF8.GetBytes("b537e1e4b2ab48e5aba9c48a5792ddf2"+":"+"590d7c23a4f34d83aab1298b7580caa6"));
+
+                        'client12' = [Convert]::ToBase64String([Text.Encoding]::UTF8.GetBytes("8ba382d79f2348bcb4120fc413c13e6f"+":"+"110e371ce7a24105bfe924f12c8446d6"));
+
+                        'client13' = [Convert]::ToBase64String([Text.Encoding]::UTF8.GetBytes("0206166cb9db42d2bae72c6c8595b8f0"+":"+"6358475f5d834ed5911902228c771f78"));
+
+                        'client14' = [Convert]::ToBase64String([Text.Encoding]::UTF8.GetBytes("fc56a7738c7f4242b870c8afa807e0ee"+":"+"30beb2e67d3c456ca336b6f772eeaa7b"));
+
+                        'client15' = [Convert]::ToBase64String([Text.Encoding]::UTF8.GetBytes("72712d4d8a36410d9f8983327eb4f72a"+":"+"c96a5b44d0da454fb8eba09c720b0eab"));
+                        
+                        'client16' = [Convert]::ToBase64String([Text.Encoding]::UTF8.GetBytes("61b02b6363384543b927a83784e4a586"+":"+"93f7ea3bff8d47b79fe5cf3c5bbf084a"));
+                        
+                        'client17' = [Convert]::ToBase64String([Text.Encoding]::UTF8.GetBytes("e994e29b257343c7bed457d134a54383"+":"+"ead146f5090142379f5d0102b6a2a58b"));
+                        
+                        'client18' = [Convert]::ToBase64String([Text.Encoding]::UTF8.GetBytes("4f887c16ca554421bc645fb05beda3c6"+":"+"c75c9f0a9d1c4c6f8616b3f9a8025e90"));
+                        
+                        'client19' = [Convert]::ToBase64String([Text.Encoding]::UTF8.GetBytes("b380afafcc8644bf8fb81b4f79a7588f"+":"+"c33918ad0ef447eca27324b0922c59b2"));
+                        
+                        'client20' = [Convert]::ToBase64String([Text.Encoding]::UTF8.GetBytes("48688f70c33a44508d8300b169e2fd33"+":"+"b813339bdf4046d48354f601a0d4a73b"))
                     }
 
 $script:clientUser = @{'client1' = @("CapabilityTest-1", "mobilitymanager");
@@ -28,11 +48,21 @@ $script:clientUser = @{'client1' = @("CapabilityTest-1", "mobilitymanager");
                         'client7' = @("CapabilityTest-7", "mobilitymanager");
                         'client8' = @("CapabilityTest-8", "mobilitymanager");
                         'client9' = @("CapabilityTest-9", "mobilitymanager");
-                        'client10' = @("CapabilityTest-10", "mobilitymanager")
+                        'client10' = @("CapabilityTest-10", "mobilitymanager");
+                        'client11' = @("CapabilityTest-1", "mobilitymanager");
+                        'client12' = @("CapabilityTest-2", "mobilitymanager");
+                        'client13' = @("CapabilityTest-3", "mobilitymanager");
+                        'client14' = @("CapabilityTest-4", "mobilitymanager");
+                        'client15' = @("CapabilityTest-5", "mobilitymanager");
+                        'client16' = @("CapabilityTest-6", "mobilitymanager");
+                        'client17' = @("CapabilityTest-7", "mobilitymanager");
+                        'client18' = @("CapabilityTest-8", "mobilitymanager");
+                        'client19' = @("CapabilityTest-9", "mobilitymanager");
+                        'client20' = @("CapabilityTest-10", "mobilitymanager")
                     }
 
 
-Function Connect-To-AMM(){
+Function Connect-To-AMM($AMM_target, $num_of_clients){
 
     $clientToken = @{'client1' = "";
                         'client2' = "";
@@ -45,8 +75,11 @@ Function Connect-To-AMM(){
                         'client9' = "";  
                         'client10' = "";
                     }
-
-    $script:clientsDict.Keys | ForEach-Object {
+    $actual_clientsDict = @($script:clientsDict.keys)[0..$num_of_clients]
+    $actual_clientToken =  [System.Collections.Generic.List[string]]::New($num_of_clients)
+    write-host  $actual_clientsDict
+    
+    $actual_clientsDict | ForEach-Object {
         $Header = @{
             Authorization = "Basic " + $script:clientsDict.Item($_)
             'Content-Type' = 'application/x-www-form-urlencoded'
@@ -58,15 +91,16 @@ Function Connect-To-AMM(){
             password = $script:clientUser.Item($_)[1]
         }
 
-        [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
-        $credentials = ((Invoke-WebRequest -Method Post -Uri "$AMMhost/api/oauth/token"  -Headers $Header -Body $Parameters).Content | ConvertFrom-Json)
-
+        # [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+        [Net.ServicePointManager]::ServerCertificateValidationCallback = {$true}
+        $credentials = ((Invoke-WebRequest -SkipCertificateCheck -Method Post -Uri "$AMM_target/api/oauth/token"  -Headers $Header -Body $Parameters).Content | ConvertFrom-Json)
+        
         if ($credentials -ne $null){
-            $clientToken[$_] = $credentials.access_token
+            $actual_clientToken.add($credentials.access_token)
         }
     }
 
-    return $clientToken 
+    return  $actual_clientToken
 
 }
 

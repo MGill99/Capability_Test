@@ -1,14 +1,15 @@
 
-Function GetGroups($clientToken) {
+Function GetGroups($clientToken, $AMM_target) {
 
     $Header =  @{
         'Authorization' = "Bearer " + $clientToken
     }
-    [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
-    (Invoke-WebRequest -Method Get -Uri "https://eng.inmotionnetworks.ca/api/v1/systems/groups" -Headers  $Header) 
+    # [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+    [Net.ServicePointManager]::ServerCertificateValidationCallback = {$true}
+    (Invoke-WebRequest -Method Get -SkipCertificateCheck -Uri "$AMM_target/api/v1/systems/groups" -Headers  $Header) 
            
 }
 
-Function runCalls($clientToken){
-        GetGroups($clientToken)
+Function runCalls($clientToken, $AMM_target){
+        GetGroups $clientToken $AMM_target
 }
