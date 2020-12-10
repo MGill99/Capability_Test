@@ -1,6 +1,3 @@
-# AMM API parameters
-$AMMhost = "https://eng.inmotionnetworks.ca"
-
 # user credentials
 $script:AMMuserName = 'admin'
 $script:AMMpassword = 'mobilitymanager'  
@@ -17,25 +14,15 @@ $script:clientsDict = @{'client1' = [Convert]::ToBase64String([Text.Encoding]::U
                         'client8' = [Convert]::ToBase64String([Text.Encoding]::UTF8.GetBytes("938ba5f0c0fd4180898661775fc5ff72"+":"+"a00ed7a12cfe469e921220556eae136c"));
                         'client9' = [Convert]::ToBase64String([Text.Encoding]::UTF8.GetBytes("f5f01703b39a4e9ba157f6a72aecb35b"+":"+"f3ec10175d794ae9b4102f09f7191ab6"));
                         'client10' = [Convert]::ToBase64String([Text.Encoding]::UTF8.GetBytes("1e99252c8e114c39a8eb1559595ab9d8"+":"+"00a6167fc0464344ae7524a167bf8d66"));
-
                         'client11' = [Convert]::ToBase64String([Text.Encoding]::UTF8.GetBytes("b537e1e4b2ab48e5aba9c48a5792ddf2"+":"+"590d7c23a4f34d83aab1298b7580caa6"));
-
                         'client12' = [Convert]::ToBase64String([Text.Encoding]::UTF8.GetBytes("8ba382d79f2348bcb4120fc413c13e6f"+":"+"110e371ce7a24105bfe924f12c8446d6"));
-
                         'client13' = [Convert]::ToBase64String([Text.Encoding]::UTF8.GetBytes("0206166cb9db42d2bae72c6c8595b8f0"+":"+"6358475f5d834ed5911902228c771f78"));
-
                         'client14' = [Convert]::ToBase64String([Text.Encoding]::UTF8.GetBytes("fc56a7738c7f4242b870c8afa807e0ee"+":"+"30beb2e67d3c456ca336b6f772eeaa7b"));
-
                         'client15' = [Convert]::ToBase64String([Text.Encoding]::UTF8.GetBytes("72712d4d8a36410d9f8983327eb4f72a"+":"+"c96a5b44d0da454fb8eba09c720b0eab"));
-                        
                         'client16' = [Convert]::ToBase64String([Text.Encoding]::UTF8.GetBytes("61b02b6363384543b927a83784e4a586"+":"+"93f7ea3bff8d47b79fe5cf3c5bbf084a"));
-                        
                         'client17' = [Convert]::ToBase64String([Text.Encoding]::UTF8.GetBytes("e994e29b257343c7bed457d134a54383"+":"+"ead146f5090142379f5d0102b6a2a58b"));
-                        
                         'client18' = [Convert]::ToBase64String([Text.Encoding]::UTF8.GetBytes("4f887c16ca554421bc645fb05beda3c6"+":"+"c75c9f0a9d1c4c6f8616b3f9a8025e90"));
-                        
                         'client19' = [Convert]::ToBase64String([Text.Encoding]::UTF8.GetBytes("b380afafcc8644bf8fb81b4f79a7588f"+":"+"c33918ad0ef447eca27324b0922c59b2"));
-                        
                         'client20' = [Convert]::ToBase64String([Text.Encoding]::UTF8.GetBytes("48688f70c33a44508d8300b169e2fd33"+":"+"b813339bdf4046d48354f601a0d4a73b"))
                     }
 
@@ -63,18 +50,6 @@ $script:clientUser = @{'client1' = @("CapabilityTest-1", "mobilitymanager");
 
 
 Function Connect-To-AMM($AMM_target, $num_of_clients){
-
-    $clientToken = @{'client1' = "";
-                        'client2' = "";
-                        'client3' = "";
-                        'client4' = "";
-                        'client5' = "";
-                        'client6' = "";
-                        'client7' = "";
-                        'client8' = "";
-                        'client9' = "";  
-                        'client10' = "";
-                    }
     $actual_clientsDict = @($script:clientsDict.keys)[0..$num_of_clients]
     $actual_clientToken =  [System.Collections.Generic.List[string]]::New($num_of_clients)
     write-host  $actual_clientsDict
@@ -91,7 +66,6 @@ Function Connect-To-AMM($AMM_target, $num_of_clients){
             password = $script:clientUser.Item($_)[1]
         }
 
-        # [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
         [Net.ServicePointManager]::ServerCertificateValidationCallback = {$true}
         $credentials = ((Invoke-WebRequest -SkipCertificateCheck -Method Post -Uri "$AMM_target/api/oauth/token"  -Headers $Header -Body $Parameters).Content | ConvertFrom-Json)
         

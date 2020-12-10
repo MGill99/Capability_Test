@@ -1,5 +1,5 @@
 
-        Function startCalls() {
+    Function startCalls() {
         $clientsAndTokens = ""
         ."/var/capabilityTest/Capability_Test/connectClients.ps1"
         $clientsAndTokens =  Connect-To-AMM $script:AMM_Target $script:Num_of_clients
@@ -7,8 +7,8 @@
 
             $Scriptblock = {
                 Param (
-                    [string]$clientToken,
-                    [string]$target
+                        [string]$clientToken,
+                        [string]$target
                     )
                 while($true){
                     $start = Get-Date
@@ -23,7 +23,7 @@
                             ,@("/var/capabilityTest/Capability_Test/getHistoricalStats.ps1", $clientToken, $target)
                     )
                     $scrips |  ForEach-Object -Parallel {
-                                write-host "scrip "  $_[0] $_[1] $_[2]
+                                write-host "script "  $_[0] $_[1] $_[2]
                                 .$_[0]
                                 runCalls $_[1] $_[2]
                     } 

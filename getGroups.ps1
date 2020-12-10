@@ -4,7 +4,6 @@ Function GetGroups($clientToken, $AMM_target) {
     $Header =  @{
         'Authorization' = "Bearer " + $clientToken
     }
-    # [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
     [Net.ServicePointManager]::ServerCertificateValidationCallback = {$true}
     (Invoke-WebRequest -Method Get -SkipCertificateCheck -Uri "$AMM_target/api/v1/systems/groups" -Headers  $Header) 
            
